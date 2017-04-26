@@ -115,6 +115,30 @@ public class MainC3 {
         });
 
         System.out.println("map = " + map);
+
+        Map<A, ? extends A> mapExtends = new TreeMap<>();
+//        mapExtends.put(a, new A(1));
+//        mapExtends.put(b, new B(2));
+//        mapExtends.put(c, new C(3));
+
+        List<? extends A> listABC = new LinkedList<C>();
+//        listABC.add(new B(1));
+//        listABC.add(new C(1));
+
+        List<Integer> list2 = new ArrayList<>();
+        list2.add(new Integer(1));
+
+        List<Integer> list4 = new ArrayList<>();
+        list4.add(Integer.MAX_VALUE);
+        printList(list4);
+
+        List<Double> list5 = new ArrayList<>();
+        list5.add(new Random().nextDouble());
+        printList(list5);
+    }
+
+    static void printList(List<? extends Number> list) {
+        System.out.println("list = " + list);
     }
 
     static class A implements Comparable<A> {
@@ -129,6 +153,7 @@ public class MainC3 {
             return String.format("%s[%s]", this.getClass().getTypeName(), n);
         }
 
+        @Override
         public int compareTo(A other) {
             return n.intValue() - other.n.intValue();
         }
